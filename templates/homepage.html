@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{% endblock %}
+
+{% block main %}
+    <!-- Create an inpux box and button for user to provide key word and search -->
+    <form action="{{ url_for('homepage') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="keyword" id="keyword" placeholder="Program Title" type="text">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Search</button>
+            </div>
+        </fieldset>
+    </form>
+    <br>
+    <p style="color:#ff9900;">Don't know where to start? Start by searching "Harvard" or "Stanford"!</p>
+
+    <script>
+    // Send an alert if user doesn't have a key word
+        document.querySelector('form').onsubmit = function()
+        {
+            if (!document.querySelector('#keyword').value) {
+                alert('Please provide a keyword to search!');
+                return false;
+            }
+            return true;
+        };
+    </script>
+
+{% endblock %}

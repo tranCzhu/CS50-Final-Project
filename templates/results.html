@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1 style="color:#ff9900;">Search Results</h1>
+    <!-- Display search results in an ordered list -->
+    <ol>
+        {% for result in results %}
+            <li><a href="{{ '/program?id=%s'%result.id }}">{{ result.title }}</a>
+                <ul>
+                    <li>Affiliation: {{ result.org }}</li>
+                    <li>Field(s): {{ result.type }}</li>
+                    <li>Program Dates: {{ result.start }} to {{ result.end }}</li>
+                    <li>Program Website: <a href="{{ result.website }}">{{ result.website }}</a></li>
+                </ul>
+            </li>
+            <br>
+        {% endfor %}
+    </ol>
+    <br>
+    <!-- Direct user to program registration page if the desired program is not found -->
+    <strong>
+    <p style="color:#ff9900;">Can't find your program?</p>
+    <p style="color:#ff9900;">Don't worry, you can register your program into our database <a href="/register">HERE</a>!</p>
+    </strong>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <!-- Create a form where people can fill in information about a program -->
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="title" id="title" placeholder="Program Title" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="org" id="org" placeholder="Affiliation Organization" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="start" id="start" placeholder="Start Date(mm/dd)" type="date">
+            <input autocomplete="off" autofocus class="form-control" name="end" id="end" placeholder="End Date(mm/dd)" type="date">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="type" id="type" placeholder="Program Type" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="website" id="website" placeholder="Program Website" type="text">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Program Description</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" name="description" id="description"></textarea>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Register This Program</button>
+    </form>
+
+    <script>
+        // Send an alert if user leaves any field blank
+        document.querySelector('form').onsubmit = function()
+        {
+            if (!document.querySelector('#title').value) {
+                alert('Please provide a program title!');
+                return false;
+            }
+            if (!document.querySelector('#org').value) {
+                alert('Please provide an affliated organization/company!');
+                return false;
+            }
+            if (!document.querySelector('#start').value) {
+                alert('Please provide a start date!');
+                return false;
+            }
+            if (!document.querySelector('#end').value) {
+                alert('Please provide an end date!');
+                return false;
+            }
+            if (!document.querySelector('#type').value) {
+                alert('Please provide the type of the program!');
+                return false;
+            }
+            if (!document.querySelector('#website').value) {
+                alert('Please provide the official website of the program!');
+                return false;
+            }
+            if (!document.querySelector('#description').value) {
+                alert('Please provide a description for the program!');
+                return false;
+            }
+            return true;
+        };
+        </script>
+
+{% endblock %}

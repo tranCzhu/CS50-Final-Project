@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <!-- Display basic program information with flask -->
+    <h1 style="color:#2ECC71;">{{ info.title }}</h1>
+    <br>
+    <h2 style="color:#ffd11a;">Average rating: {{ info.rating }}/5</h2>
+    <br>
+    <h3>{{ info.org }}</h3>
+    <br>
+    <h4>Dates: {{ info.start }} to {{ info.end }}</h4>
+    <br>
+    <h4>Program website: <a href="{{ info.website }}">{{ info.website }}</a></h4>
+    <br>
+    <p>{{ info.description }}</p>
+    <br>
+    <h4 style="color:#ff9900;"><strong>Past Reviews</strong></h4>
+    <br>
+
+    <!-- Display all past user reviews with flask -->
+    {% for review in reviews %}
+    <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{ review.title }}</h5>
+          <small>Rating: {{ review.rating }}</small>
+        </div>
+        <p class="mb-1">{{ review.review }}</p>
+        <small>by {{ review.nickname }}</small>
+      </a>
+    </div>
+    {% endfor %}
+    <br>
+
+    <h4 style="color:#ff9900;"><strong>Write Your Own Review Here!</strong></h4>
+    <br>
+    <!-- Create a form where user can provide their own rating and review -->
+    <form action="/program" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="nickname" id="nickname" placeholder="Nickname" type="text">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="rating" id="rating" placeholder="Rating: 0-5" type="number">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="title" id="title" placeholder="Title" type="text">
+        </div>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Review</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" name="review" id = "review"></textarea>
+        </div>
+        <br>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <script>
+    // Send an alert if user leaves one of the field blank
+    // Limit user rating input to 0 to 5
+        document.querySelector('form').onsubmit = function()
+        {
+            if (!document.querySelector('#nickname').value) {
+                alert('Please provide a nickname!');
+                return false;
+            }
+            if (!document.querySelector('#rating').value) {
+                alert('Please provide a rating!');
+                return false;
+            }
+            if (document.querySelector('#rating').value > 5 || document.querySelector('#rating').value < 0) {
+                alert('Rating must be 0 to 5!');
+                return false;
+            }
+            if (!document.querySelector('#title').value) {
+                alert('Please provide a title!');
+                return false;
+            }
+            if (!document.querySelector('#review').value) {
+                alert('Please provide a review!');
+                return false;
+            }
+            return true;
+        };
+    </script>
+
+{% endblock %}
