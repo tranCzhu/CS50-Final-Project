@@ -1,7 +1,7 @@
 Hi!
 <br>
 <br>
-Welcome to Trancy Zhu's CS50 Final Project - "Rate Your Experiences!"
+Welcome to Trancy's CS50 Final Project - "Rate Your Experiences!"
 <br>
 <br>
 "Rate Your Experiences" is a website that allows users to search up for a summer/winter/internship program in a database, look at past reviews about the specific program, and write their own reviews about the program.
